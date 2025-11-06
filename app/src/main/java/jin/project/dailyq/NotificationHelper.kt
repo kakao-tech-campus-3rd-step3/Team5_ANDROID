@@ -25,6 +25,8 @@ object NotificationHelper {
                 description = "DailyQ 앱의 일일 알림"
                 enableVibration(true)
                 enableLights(true)
+                // 보라색 파스텔 톤으로 라이트 색상 설정
+                lightColor = context.resources.getColor(android.R.color.holo_purple, null)
             }
             
             val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -47,6 +49,9 @@ object NotificationHelper {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
+        // 보라색 파스텔 톤 색상
+        val pastelPurple = android.graphics.Color.parseColor("#E1BEE7")
+        
         // 알림 아이콘 (흰색 투명 배경 필요)
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
@@ -56,6 +61,7 @@ object NotificationHelper {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+            .setColor(pastelPurple) // 보라색 파스텔 톤 적용
             .build()
 
         with(NotificationManagerCompat.from(context)) {
